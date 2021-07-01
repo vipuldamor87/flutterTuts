@@ -13,20 +13,69 @@ void main(){
   ));
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  var myText = "Change My Name";
+  TextEditingController _nameController = TextEditingController();
+
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(title: Text('awesome app'),
       ),
       body: Center(
-        child: Container(
-          height: 100,
-          width: 100,
-          color: Colors.teal,
-        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: SingleChildScrollView(
+            child: Card(
+              child: Column(
+                children: <Widget>[
+                  Image.asset(
+                    "assets/day.png",
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                      myText,
+                    style: TextStyle(fontSize: 25,
+                    fontWeight: FontWeight.bold),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: TextField(
+                      controller: _nameController,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        hintText: "enter Some Text",
+                        labelText: "Name"
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+        )
       ),
       drawer: Drawer(
         child: ListView(
@@ -56,8 +105,11 @@ class HomePage extends StatelessWidget {
         ) ,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(Icons.edit),
+        onPressed: () {
+          myText = _nameController.text;
+          setState(() {});
+        },
+        child: Icon(Icons.send),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
