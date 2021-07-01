@@ -21,38 +21,45 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text('awesome app'),
       ),
-      body: Container(
-        width: 300,
-        color: Colors.teal,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisSize: MainAxisSize.max,
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.all(8),
-              width: 100,
-              height: 100,
-              color: Colors.red,
-              alignment: Alignment.center,
-            ),
-            Container(
-              padding: EdgeInsets.all(8),
-              width: 100,
-              height: 100,
-              color: Colors.green,
-              alignment: Alignment.center,
-            ),
-            Container(
-              padding: EdgeInsets.all(8),
-              width: 100,
-              height: 100,
-              color: Colors.yellow,
-              alignment: Alignment.center,
-            ),
-          ],
+      body: Center(
+        child: Container(
+          height: 100,
+          width: 100,
+          color: Colors.teal,
         ),
       ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.all(0),
+          children:<Widget>[
+            UserAccountsDrawerHeader(
+                accountName: Text('Vipul Damor'),
+                accountEmail: Text('Vipul@abc.com'),
+                currentAccountPicture:CircleAvatar(
+                  backgroundImage: NetworkImage('https://i.pinimg.com/474x/7d/1a/3f/7d1a3f77eee9f34782c6f88e97a6c888.jpg'),
+                ),
+            ),
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text('vipul damor'),
+              subtitle: Text('developer'),
+              trailing: Icon(Icons.edit),
+              onTap: (){},
+            ),
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text('Email'),
+              subtitle: Text('vipul@abc.com'),
+              trailing: Icon(Icons.email),
+            ),
+          ]
+        ) ,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.edit),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 }
